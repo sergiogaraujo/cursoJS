@@ -1,28 +1,26 @@
-let res = document.querySelector('input#fnum');
+let num = document.querySelector('input#fnum');
 let lista = document.querySelector('select#flista');
-let res= document.querySelector('div#res');
+let res = document.querySelector('div#res');
 let valores = [];
 
 function isNumero(n) {
-    if (Number(n) >= 1 && Number(n) <= 100) {
-        return true;
-    } else {
-        return false;
-    }
+    return Number(n) >= 1 && Number(n) <= 100;
 }
 
 function inLista(n, l) {
-    if (l.indexOf(Number(n)) != -1) {
-        return true;
-    } else {
-        return false;
-    }
+    return l.indexOf(Number(n)) !== -1;
 }
 
 function adicionar() {
-    if(isNumero(Number.value) && !inLista(Number.value, valores)) {   
-
+    if (isNumero(num.value) && !inLista(num.value, valores)) {
+        valores.push(Number(num.value));
+        let item = document.createElement('option');
+        item.text = `Valor ${num.value} adicionado.`;
+        lista.appendChild(item);
+        res.innerHTML = '';
     } else {
         window.alert('Valor inválido ou já encontrado na lista.');
     }
+    num.value = '';
+    num.focus();
 }
